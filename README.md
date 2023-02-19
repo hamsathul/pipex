@@ -71,4 +71,5 @@ to manipulate the data and then output the result to an output file.
 <p>This command will read the content of 'infile', list them using the "ls -l" command and filter the output using the "grep a" command. The output of the "grep a" command will then be filtered again using the "grep f" command. The final output of the "grep f" command will be saved in 'outfile'.</p>
 
 <h3>Example 3: Here_doc and Limiter Command</h3>
-<pre><code>./pipex here_doc "limiter" "grep a" "grep b" "wc -w" outfile</
+<pre><code>./pipex here_doc "limiter" "grep a" "grep b" "wc -l" outfile</
+<p>when here_doc is found then data is taken in from the STDIN till the limiter is found then the input is filtered using the  "grep a" command. The output of the "grep a" command will then be filtered again using the "grep b" command which is then used by the "wc-l" command to count the number of lines. The final output of the "wc -l" command will be saved in 'outfile'.</p>
