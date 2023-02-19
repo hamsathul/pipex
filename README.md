@@ -11,14 +11,14 @@
  ⚠️ **Warning**: Don't copy/paste anything you don't understand: it's bad for you, and for the school.</br>
  </p>
 <p>
-	<b><i>Project Overview</i></b><br>
+	<b>Project Overview</b><br>
 </p>
 Pipex is a project at 42 school that aims to introduce students to the basics of interprocess communication and file manipulation in Unix-like 
 operating systems using pipes. The goal of the project is to develop a program that can take an input file and use a series of pipes 
 to manipulate the data and then output the result to an output file.
 
 <p>
-	<b><i>Learning Outcomes</i></b><br>
+	<b>Learning Outcomes</b><br>
 </p>
 <ul>
 <li>Familiarity with Unix-like systems</li>
@@ -31,7 +31,7 @@ to manipulate the data and then output the result to an output file.
 <body>
 	<h2>Description</h2>
 	<p>
-		 This project is composed of 2 parts: the mandatory and the bonus part. The mandatory part consists of a basic pipex that takes 2 commands and 1 file and outputs the result of these commands to another file. The bonus part consists of a pipex that uses multiple pipes to execute several commands and a command that uses a "here_doc" to read data from the standard input.
+		 This project is composed of 2 parts: the mandatory and the bonus part. The mandatory part consists of a basic pipex that takes 2 commands and 1 file and outputs the result of these commands to another file. The bonus part consists of a pipex that uses multiple pipes to execute several commands and a command that uses a "here_doc" to read data from the standard input. </br> </br>
 		 Inside the source code the working of each function is explained as comments so the working of the program can be undersood properly.
 	</p>
 	<h2>Usage</h2>
