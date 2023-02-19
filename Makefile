@@ -6,15 +6,19 @@
 #    By: hkunnam- <hkunnam-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/18 11:48:04 by hkunnam-          #+#    #+#              #
-#    Updated: 2023/02/18 17:32:01 by hkunnam-         ###   ########.fr        #
+#    Updated: 2023/02/19 16:32:23 by hkunnam-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
+LIBFT 		= libft.a
+
+LFT_PATH 	= ./libft/libft/
+
 CC = gcc
 
-CFLAGS = -Werror -Wall -Wextra -fsanitize=address -static-libasan
+CFLAGS = -Werror -Wall -Wextra -fsanitize=address -static-libsan
 
 RM = rm -rf
 
@@ -25,30 +29,41 @@ YE	= \033[33;1m
 CY	= \033[36;1m
 RC	= \033[0m
 
-SRCS = 	srcs/pipex.c\
-		srcs/utls.c\
-		srcs/error.c\
-		libft/libft/libft.a\
+SRCS = 	./srcs/pipex.c\
+		./srcs/utls.c\
+		./srcs/error.c\
 
-SRCS_BONUS = 	srcs_bonus/pipex_bonus.c\
-				srcs_bonus/utls_bonus.c\
-				srcs_bonus/error_bonus.c\
-				libft/libft/libft.a\
+SRCS_BONUS = 	./srcs_bonus/pipex_bonus.c\
+				./srcs_bonus/utls_bonus.c\
+				./srcs_bonus/error_bonus.c\
 
-$(NAME) :
-	@echo "\n$(GR)Generating Libft...$(RC)\n"
-	@make all -C libft/libft/
-	@echo "$(GR)Libft created!$(RC)\n"
+OBJ=$(notdir $(SRCS:.c=.o))
+
+OBJ_BONUS=$(notdir $(SRCS_BONUS:.c=.o))
+
+$(NAME) : $(OBJ) $(LIBFT)
 	@echo "\n$(CY)Generating pipex executable...$(RC)\n"
-	@gcc $(CFLAGS) $(SRCS) -o $(NAME)
+	@gcc $(CFLAGS) $(OBJ) -o $(NAME) -L $(LFT_PATH) -lft
 	@echo "$(GR)Done!$(RC)\n\n"
 
-bonus :
+$(OBJ): $(SRCS)
+	@echo "\n$(CY)Compiling source files...$(RC)\n"
+	@$(CC) $(CFLAGS) -g -c -I ./includes/ $(SRCS)
+	@echo "$(GR)Objects ready!$(RC)\n\n"
+
+$(OBJ_BONUS): $(SRCS_BONUS)
+	@echo "\n$(CY)Compiling source files...$(RC)\n"
+	@$(CC) $(CFLAGS) -g -c -I ./includes/ $(SRCS_BONUS)
+	@echo "$(GR)Objects ready!$(RC)\n\n"
+
+$(LIBFT):
 	@echo "\n$(GR)Generating Libft...$(RC)\n"
 	@make all -C libft/libft/
 	@echo "$(GR)Libft created!$(RC)\n"
+	
+bonus : $(OBJ_BONUS) $(LIBFT)
 	@echo "\n$(CY)Generating pipex bonus executable...$(RC)\n"
-	@gcc $(CFLAGS) $(SRCS_BONUS) -o $(NAME)
+	@gcc $(CFLAGS) $(OBJ_BONUS) -o $(NAME) -L $(LFT_PATH) -lft
 	@echo "$(GR)Pipex bonus Done!$(RC)\n\n"
 
 all : $(NAME)
@@ -61,7 +76,7 @@ fclean : clean
 
 clean :
 	@echo "\n$(YE)Cleaning all object files...$(RC)\n"
-	@$(RM) $(NAME)
+	@$(RM) $(OBJ) $(OBJ_BONUS)
 	@make clean -C libft/libft/
 	@echo "$(RE)objects removed!$(RC)\n"
 

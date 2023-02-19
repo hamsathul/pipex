@@ -6,11 +6,21 @@
 /*   By: hkunnam- <hkunnam-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 11:50:37 by hkunnam-          #+#    #+#             */
-/*   Updated: 2023/02/18 16:31:33 by hkunnam-         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:02:37 by hkunnam-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
+
+void	error3(int errorcode)
+{
+	if (errorcode == 7)
+	{
+		ft_putstr_fd(C_RED, STDERR_FILENO);
+		ft_putstr_fd("one of the commands is empty.....\n", STDERR_FILENO);
+		ft_putstr_fd(C_RM, STDERR_FILENO);
+	}
+}
 
 void	error2(int errorcode)
 {	
@@ -26,6 +36,12 @@ void	error2(int errorcode)
 		ft_putstr_fd("Please check the arguments \n", STDERR_FILENO);
 		ft_putstr_fd("Usage: ./pipex here_doc limiter cmd1 cmd2 file \n", \
 		STDERR_FILENO);
+		ft_putstr_fd(C_RM, STDERR_FILENO);
+	}
+	else if (errorcode == 6)
+	{
+		ft_putstr_fd(C_RED, STDERR_FILENO);
+		ft_putstr_fd("Path not found........ \n", STDERR_FILENO);
 		ft_putstr_fd(C_RM, STDERR_FILENO);
 	}
 }
@@ -53,6 +69,7 @@ void	error(int errorcode)
 		ft_putstr_fd(C_RM, STDERR_FILENO);
 	}
 	error2(errorcode);
+	error3(errorcode);
 	exit(errorcode);
 }
 

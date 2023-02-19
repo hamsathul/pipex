@@ -6,7 +6,7 @@
 /*   By: hkunnam- <hkunnam-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 11:50:37 by hkunnam-          #+#    #+#             */
-/*   Updated: 2023/02/18 12:35:01 by hkunnam-         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:58:40 by hkunnam-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ void	error2(int errorcode)
 	{
 		ft_putstr_fd(C_RED, STDERR_FILENO);
 		ft_putstr_fd("Failed to open the file .... \n", STDERR_FILENO);
+		ft_putstr_fd(C_RM, STDERR_FILENO);
+	}
+	else if (errorcode == 5)
+	{
+		ft_putstr_fd(C_RED, STDERR_FILENO);
+		ft_putstr_fd("Path not found .... \n", STDERR_FILENO);
+		ft_putstr_fd(C_RM, STDERR_FILENO);
+	}
+	else if (errorcode == 6)
+	{
+		ft_putstr_fd(C_RED, STDERR_FILENO);
+		ft_putstr_fd("cmd1 or cmd2 is empty.....\n", STDERR_FILENO);
 		ft_putstr_fd(C_RM, STDERR_FILENO);
 	}
 }

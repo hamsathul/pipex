@@ -6,7 +6,7 @@
 /*   By: hkunnam- <hkunnam-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 11:50:27 by hkunnam-          #+#    #+#             */
-/*   Updated: 2023/02/18 14:32:32 by hkunnam-         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:51:07 by hkunnam-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_strcmp(char *s1, char *s2)
 	size_t	i;
 
 	i = 0;
-
 	if (!s1)
 		return (1);
 	while (s1[i] || s2[i])
@@ -96,17 +95,18 @@ char	*get_path(char *cmd, char **env)
 	int		i;
 	char	**full_path;
 	char	**split_cmd;
-	char	*partial_path;
 	char	*exec_path;
+	char	*get_env_var;
 
 	i = -1;
-	full_path = ft_split(ft_getenv("PATH", env), ':');
+	get_env_var = ft_getenv("PATH", env);
+	if (!get_env_var)
+		error(6);
+	full_path = ft_split(get_env_var, ':');
 	split_cmd = ft_split(cmd, ' ');
 	while (full_path[++i])
 	{
-		partial_path = ft_strjoin(full_path[i], "/");
-		exec_path = ft_strjoin(partial_path, split_cmd[0]);
-		free(partial_path);
+		exec_path = ft_strjoin(ft_strjoin(full_path[i], "/"), split_cmd[0]);
 		if (access(exec_path, F_OK | X_OK) == 0)
 		{
 			free(split_cmd);

@@ -6,7 +6,7 @@
 /*   By: hkunnam- <hkunnam-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 11:50:12 by hkunnam-          #+#    #+#             */
-/*   Updated: 2023/02/18 21:23:02 by hkunnam-         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:00:22 by hkunnam-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	execute(char *cmd, char **env)
 	char	*path;
 
 	split_cmd = ft_split(cmd, ' ');
+	if (!split_cmd[0])
+		error(7);
 	path = get_path(split_cmd[0], env);
 	if (execve(path, split_cmd, env) == -1)
 	{
@@ -32,15 +34,18 @@ void	execute(char *cmd, char **env)
 		exit(0);
 	}
 }
+
 /* 
 The function takes two parameters:
 av: a pointer to a character array that contains the command to be executed.
-pipe_fd: a pointer to an integer array that contains the file descriptors for the pipe.
-The function reads input from standard input using the get_next_line function and 
-writes it to the write end of the pipe using the ft_putstr_fd function.
+pipe_fd: a pointer to an integer array that contains the file descriptors 
+for the pipe.
+The function reads input from standard input using the get_next_line function 
+and writes it to the write end of the pipe using the ft_putstr_fd function.
 It continues to read and write input until it encounters a line that matches 
 the specified delimiter, which is the third command line argument (av[2]). 
-When it finds the delimiter, it frees the line buffer and exits with a status code of 0.
+When it finds the delimiter, it frees the line buffer and exits with a status 
+code of 0.
 */
 void	read_write_to_pipe_end(char **av, int *pipe_fd)
 {
@@ -59,11 +64,13 @@ void	read_write_to_pipe_end(char **av, int *pipe_fd)
 		free(line);
 	}
 }
+
 /* 
-The function sets up a pipeline using a Unix pipe and forks a child process.
-If the process is the child process, it calls the read_write_to_pipe_end function 
-to read input from standard input and write it to the write end of the pipe. 
-If the process is the parent process, it closes the write end of the pipe, 
+The function sets up a pipeline using a Unix pipe and forks a child 
+process. If the process is the child process, it calls the 
+read_write_to_pipe_end function to read input from standard 
+input and write it to the write end of the pipe. If the process
+is the parent process, it closes the write end of the pipe, 
 duplicates the read end of the pipe to standard input using the dup2 function, 
 waits for the child process to exit using the wait function, and then returns.
  */
@@ -86,14 +93,15 @@ void	here_doc(char **av)
 		wait(NULL);
 	}
 }
-/* 
+
+/*
 pipe_operation sets up a pipeline between two processes using a Unix pipe.
 The pipeline allows the output of one process to be connected to the input 
 of another process.
 The function takes two parameters:
 cmd: a pointer to a character array that contains the command to be executed.
-env: a pointer to a character array that contains the environment variables for the command.
-The function performs the following steps:
+env: a pointer to a character array that contains the environment variables 
+for the command. The function performs the following steps:
 It creates a pipe using the pipe system call. If the call fails, 
 it calls an error function with error code 2.
 It forks a child process using the fork system call. 
@@ -130,6 +138,7 @@ void	pipe_operation(char *cmd, char **env)
 		dup2(pipe_fd[0], 0);
 	}
 }
+
 /* 
 1.	checks if the number of arguments are 5 or more
 2.	checks if the 2nd argumnet is here_doc

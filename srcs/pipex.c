@@ -6,7 +6,7 @@
 /*   By: hkunnam- <hkunnam-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 11:50:12 by hkunnam-          #+#    #+#             */
-/*   Updated: 2023/02/18 13:59:31 by hkunnam-         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:58:58 by hkunnam-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	execute(char *cmd, char **env)
 	char	*path;
 
 	split_cmd = ft_split(cmd, ' ');
+	if (!split_cmd[0])
+		error(6);
 	path = get_path(split_cmd[0], env);
 	if (execve(path, split_cmd, env) == -1)
 	{
