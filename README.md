@@ -1,7 +1,15 @@
 <h1 align="center">
 #42 School - Pipex
 </h1>
+<p align="center">
+    <img src="https://img.shields.io/github/languages/code-size/hamsathul/pipex?style=for-the-badge&&color=green">
+    <img src="https://img.shields.io/github/last-commit/hamsathul/pipex?style=for-the-badge&&color=blueviolet" />
+     <img src="https://img.shields.io/tokei/lines/github/hamsathul/pipex?style=for-the-badge" />
+     <img src="https://img.shields.io/github/languages/count/hamsathul/pipex?style=for-the-badge&&color=orange" />     </p>
 
+<p align="center">
+ ⚠️ **Warning**: Don't copy/paste anything you don't understand: it's bad for you, and for the school.</br>
+ </p>
 <p>
 	<b><i>Project Overview</i></b><br>
 </p>
@@ -24,6 +32,7 @@ to manipulate the data and then output the result to an output file.
 	<h2>Description</h2>
 	<p>
 		 This project is composed of 2 parts: the mandatory and the bonus part. The mandatory part consists of a basic pipex that takes 2 commands and 1 file and outputs the result of these commands to another file. The bonus part consists of a pipex that uses multiple pipes to execute several commands and a command that uses a "here_doc" to read data from the standard input.
+		 Inside the source code the working of each function is explained as comments so the working of the program can be undersood properly.
 	</p>
 	<h2>Usage</h2>
 	<p>
