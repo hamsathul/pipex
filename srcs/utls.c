@@ -101,7 +101,7 @@ char	*get_path(char *cmd, char **env)
 	i = -1;
 	get_env_var = ft_getenv("PATH", env);
 	if (!get_env_var)
-		error(6);
+		error(5);
 	full_path = ft_split(get_env_var, ':');
 	split_cmd = ft_split(cmd, ' ');
 	while (full_path[++i])
